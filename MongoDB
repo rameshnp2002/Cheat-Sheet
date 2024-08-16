@@ -1,0 +1,37 @@
+Query Filter
+  { "name": "rpal" }
+Performing a Text Search
+  
+Match by Multiple Conditions ($and)
+  { $and: [ { age: 25, gen: "M" } ] }
+  { $and: [{ age: { $gte: 25 } }, { age: { $lte: 40 } }] }
+
+Match by Multiple Possible Conditions ($or)
+  { $or: [ { version: 4 }, { name: "RPAL" } ] }
+  
+
+Match by Exclusion ($not)
+  { name: { $not: { $eq: "RPAL" } } }
+
+Match with Comparison Operators
+  { version: { $lte: 4 } }
+
+Match by Date
+  { dateCreated: { $gt: new Date('2000-06-22') } }
+
+Match by Array Conditions
+  { scores: { $elemMatch: { $gt: 80, $lt: 90 } } }
+
+Match by Substring
+  query filter uses the $regex operator to find all documents where the value of name includes the term "ram":
+  { name: { $regex: "ram" } 
+
+Match by Embedded Field
+  { "school.name": "Northwestern" }
+
+Field Exits
+  { qty: { $exists: true } } 
+
+Field Exists and Not Equal To
+   { qty: { $exists: true, $nin: [ 5, 15 ] } }
+
